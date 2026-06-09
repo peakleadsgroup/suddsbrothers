@@ -7,6 +7,7 @@ Professional pressure washing and soft washing website for coastal North Carolin
 - **Home** (`index.html`) — Hero, trust pillars, section previews
 - **About** (`about.html`) — Owner story and eco-friendly approach
 - **Services** (`services.html`) — Power washing and soft washing details
+- **Who We Serve** (`who-we-serve.html`) — Homeowners, realtors, property managers, and business owners
 - **Locations** (`locations.html`) — Service areas and interactive map
 - **Contact** (`contact.html`) — Contact form and tap-to-call/text/email
 
