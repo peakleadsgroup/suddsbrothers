@@ -379,8 +379,8 @@ ul {
 }
 
 .trust-icon {
-  width: 56px;
-  height: 56px;
+  width: 64px;
+  height: 64px;
   margin: 0 auto 1rem;
   background: var(--color-green);
   border-radius: 50%;
@@ -390,8 +390,8 @@ ul {
 }
 
 .trust-icon img {
-  width: 28px;
-  height: 28px;
+  width: 40px;
+  height: 40px;
   object-fit: contain;
 }
 
@@ -619,7 +619,12 @@ ul {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  font-size: 1.1rem;
+}
+
+.contact-item-icon img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
 }
 
 .contact-item a {
@@ -647,20 +652,22 @@ ul {
 .social-links a {
   width: 44px;
   height: 44px;
-  background: var(--color-black);
-  color: var(--color-white);
+  background: var(--color-green);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
-  font-size: 0.85rem;
   transition: background 0.2s;
 }
 
+.social-links a img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
 .social-links a:hover {
-  background: var(--color-green);
-  color: var(--color-black);
+  background: var(--color-green-dark);
 }
 
 /* Form */
