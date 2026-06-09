@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Areas | Sudds Brothers Pressure Washing</title>
+  <meta name="description" content="Sudds Brothers serves Wilmington, Leland, Burgaw, Castle Hayne, Topsail, Hampstead, Oak Island, and communities within 100 miles of coastal North Carolina.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;0,9..40,800;1,9..40,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .map-marker { background: transparent; border: none; }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo-link" aria-label="Sudds Brothers Pressure Washing Home">
+        <img src="images/logo-black-bg.png" alt="Sudds Brothers Pressure Washing">
+      </a>
+      <nav class="nav-desktop" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="locations.html" class="active">Locations</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <a href="tel:+19194410934" class="header-cta">Call (919) 441-0934</a>
+      <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="nav-mobile" aria-label="Mobile navigation">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="locations.html" class="active">Locations</a>
+      <a href="contact.html">Contact</a>
+      <a href="tel:+19194410934" class="mobile-cta">Call (919) 441-0934</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <h1>Pressure Washing Service Areas Near Wilmington, NC</h1>
+      <p>Locally based in Wilmington and serving coastal North Carolina communities within a 100-mile radius.</p>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="content-block" style="margin-bottom: 2rem;">
+          <p>Sudds Brothers Pressure Washing is headquartered in Wilmington, NC — the heart of coastal Carolina. From our home base, we travel to communities across New Hanover, Brunswick, Pender, Onslow, and surrounding counties to deliver professional power washing and soft washing services.</p>
+          <p>Don't see your town listed? If you're within 100 miles of Wilmington and your community has a population of 10,000 or more, there's a good chance we serve your area. <a href="contact.html">Contact us</a> to confirm.</p>
+        </div>
+
+        <div class="locations-grid">
+          <div class="location-region">
+            <h3>New Hanover County</h3>
+            <ul>
+              <li>Wilmington</li>
+              <li>Castle Hayne</li>
+              <li>Carolina Beach</li>
+              <li>Wrightsville Beach</li>
+            </ul>
+          </div>
+          <div class="location-region">
+            <h3>Brunswick County</h3>
+            <ul>
+              <li>Leland</li>
+              <li>Oak Island</li>
+              <li>Southport</li>
+              <li>Shallotte</li>
+              <li>Boiling Spring Lakes</li>
+            </ul>
+          </div>
+          <div class="location-region">
+            <h3>Pender County</h3>
+            <ul>
+              <li>Burgaw</li>
+              <li>Hampstead</li>
+              <li>Surf City (Topsail)</li>
+              <li>Rocky Point</li>
+            </ul>
+          </div>
+          <div class="location-region">
+            <h3>Onslow County</h3>
+            <ul>
+              <li>Jacksonville</li>
+              <li>Sneads Ferry</li>
+              <li>Swansboro</li>
+            </ul>
+          </div>
+          <div class="location-region">
+            <h3>Craven &amp; Lenoir Counties</h3>
+            <ul>
+              <li>New Bern</li>
+              <li>Kinston</li>
+            </ul>
+          </div>
+          <div class="location-region">
+            <h3>Extended Service Area</h3>
+            <ul>
+              <li>Fayetteville, NC</li>
+              <li>Myrtle Beach, SC</li>
+              <li>Whiteville, NC</li>
+              <li>Elizabethtown, NC</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="map-container">
+          <h2 style="text-align: center; margin-bottom: 1rem; font-size: 1.35rem;">Our Coverage Map</h2>
+          <p style="text-align: center; color: var(--color-gray-600); margin-bottom: 1.5rem; max-width: 650px; margin-left: auto; margin-right: auto;">The highlighted circle shows our 100-mile service radius from Wilmington, NC. Green markers indicate key cities we serve.</p>
+          <div id="service-map" role="img" aria-label="Map of Wilmington NC and surrounding service areas with 100 mile radius"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-strip">
+      <div class="container">
+        <h2>Serving Your Area?</h2>
+        <p>Call or text for a free pressure washing quote — we respond within one business day.</p>
+        <a href="tel:+19194410934" class="btn">Call (919) 441-0934</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="images/logo-black-bg.png" alt="Sudds Brothers Pressure Washing">
+          <p>Professional pressure washing and soft washing serving Wilmington, NC and coastal North Carolina.</p>
+        </div>
+        <div class="footer-nav">
+          <h3>Navigation</h3>
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="locations.html">Locations</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-contact">
+          <h3>Contact</h3>
+          <p><a href="tel:+19194410934">(919) 441-0934</a></p>
+          <p><a href="sms:+19194410934">Text Us</a></p>
+          <p><a href="mailto:contact@suddspressurewashing.com">contact@suddspressurewashing.com</a></p>
+          <div class="social-links">
+            <a href="https://www.facebook.com/profile.php?id=61590643113517" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook">FB</a>
+            <a href="https://www.instagram.com/suddsbrothers/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">IG</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Sudds Brothers Pressure Washing. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="js/locations-map.js"></script>
+</body>
+</html>
