@@ -121,8 +121,8 @@ ul {
 
 .header-cta {
   display: none;
-  background: var(--color-black);
-  color: var(--color-white) !important;
+  background: var(--color-green);
+  color: var(--color-black) !important;
   padding: 0.6rem 1.25rem;
   border-radius: var(--radius);
   font-weight: 700;
@@ -131,8 +131,8 @@ ul {
 }
 
 .header-cta:hover {
-  background: var(--color-gray-800);
-  color: var(--color-white) !important;
+  background: var(--color-green-dark);
+  color: var(--color-black) !important;
 }
 
 .menu-toggle {
@@ -203,8 +203,8 @@ ul {
 .nav-mobile .mobile-cta {
   display: inline-block;
   margin-top: 1rem;
-  background: var(--color-black);
-  color: var(--color-white) !important;
+  background: var(--color-green);
+  color: var(--color-black) !important;
   padding: 0.75rem 1.5rem;
   border-radius: var(--radius);
   font-weight: 700;
@@ -382,14 +382,16 @@ ul {
   width: 56px;
   height: 56px;
   margin: 0 auto 1rem;
+  background: var(--color-green);
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .trust-icon img {
-  width: 48px;
-  height: 48px;
+  width: 28px;
+  height: 28px;
   object-fit: contain;
 }
 
@@ -569,6 +571,11 @@ ul {
   border-radius: 20px;
   font-size: 0.9rem;
   color: var(--color-gray-800);
+}
+
+.location-region li .zip {
+  font-weight: 700;
+  color: var(--color-black);
 }
 
 #service-map {
