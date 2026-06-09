@@ -43,7 +43,6 @@ Create a table (e.g. "Leads") with these columns:
 | Last Name   | Single line text |
 | Phone       | Phone number |
 | Email       | Email |
-| Home Address| Single line text |
 | Message     | Long text |
 | Submitted At| Date (include time) |
 
@@ -68,7 +67,7 @@ Redeploy after adding variables.
 ## Customization
 
 - **Social links:** Facebook and Instagram are configured; update if handles change
-- **Logo:** Replace files in `images/` as needed
+- **Logo:** `images/logo.png` (transparent background)
 
 ## Contact
 

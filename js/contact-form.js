@@ -44,7 +44,6 @@
     var lastName = form.querySelector('#last-name');
     var phone = form.querySelector('#phone');
     var email = form.querySelector('#email');
-    var address = form.querySelector('#address');
     var message = form.querySelector('#message');
 
     var valid = true;
@@ -71,11 +70,6 @@
       setFieldError(email, 'Please enter a valid email address.');
       valid = false;
     }
-    if (!address.value.trim()) {
-      setFieldError(address, 'Home address is required.');
-      valid = false;
-    }
-
     if (!valid) {
       showStatus('Please correct the errors above.', 'error');
       return;
@@ -86,7 +80,6 @@
       lastName: lastName.value.trim(),
       phone: phone.value.trim(),
       email: email.value.trim(),
-      address: address.value.trim(),
       message: message ? message.value.trim() : ''
     };
 

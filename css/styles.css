@@ -93,11 +93,15 @@ ul {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  position: relative;
 }
 
 .logo-link img {
   height: 48px;
   width: auto;
+  background: var(--color-white);
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius);
 }
 
 .nav-desktop {
@@ -210,19 +214,26 @@ ul {
 
 /* Hero */
 .hero {
-  background: var(--color-black);
+  background: var(--color-black) url('../images/hero.png') center center / cover no-repeat;
   color: var(--color-white);
-  padding: 4rem 1.25rem 5rem;
+  padding: 5rem 1.25rem 6rem;
   text-align: center;
   position: relative;
   overflow: hidden;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
 }
 
 .hero::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 50% 100%, rgba(154, 205, 50, 0.15) 0%, transparent 70%);
+  background: linear-gradient(
+    to bottom,
+    rgba(17, 17, 17, 0.55) 0%,
+    rgba(17, 17, 17, 0.7) 100%
+  );
   pointer-events: none;
 }
 
@@ -230,6 +241,8 @@ ul {
   max-width: 800px;
   margin: 0 auto;
   position: relative;
+  z-index: 1;
+  width: 100%;
 }
 
 .hero h1 {
@@ -239,6 +252,7 @@ ul {
   font-style: italic;
   line-height: 1.15;
   margin-bottom: 1.25rem;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
 }
 
 .hero h1 span {
@@ -247,11 +261,12 @@ ul {
 
 .hero p {
   font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.9);
   margin-bottom: 2rem;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
 }
 
 .hero-actions {
@@ -775,6 +790,10 @@ ul {
 .footer-brand img {
   height: 60px;
   margin-bottom: 1rem;
+  background: var(--color-white);
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius);
+  width: fit-content;
 }
 
 .footer-brand p {
@@ -859,6 +878,10 @@ ul {
 
   .nav-desktop {
     display: flex;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .header-cta {

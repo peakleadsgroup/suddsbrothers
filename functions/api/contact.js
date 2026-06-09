@@ -8,9 +8,9 @@ export async function onRequestPost(context) {
 
   try {
     const body = await request.json();
-    const { firstName, lastName, phone, email, address, message } = body;
+    const { firstName, lastName, phone, email, message } = body;
 
-    if (!firstName || !lastName || !phone || !email || !address) {
+    if (!firstName || !lastName || !phone || !email) {
       return new Response(
         JSON.stringify({ error: 'All required fields must be filled out.' }),
         { status: 400, headers: corsHeaders }
@@ -42,7 +42,6 @@ export async function onRequestPost(context) {
           'Last Name': lastName,
           'Phone': phone,
           'Email': email,
-          'Home Address': address,
           'Message': message || '',
           'Submitted At': new Date().toISOString()
         }
