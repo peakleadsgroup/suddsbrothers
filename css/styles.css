@@ -508,9 +508,6 @@ ul {
 
 /* Service detail */
 .service-detail {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
   max-width: 960px;
   margin-inline: auto;
   margin-bottom: 3rem;
@@ -524,38 +521,35 @@ ul {
   padding-bottom: 0;
 }
 
-.service-detail > div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.service-detail-columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
 }
 
 .service-detail .service-title {
-  grid-column: 1 / -1;
   text-align: center;
   font-family: var(--font-display);
   font-size: clamp(1.75rem, 3.5vw, 2.25rem);
   font-weight: 800;
   font-style: italic;
   color: var(--color-black);
-  margin-bottom: 0.25rem;
+  margin-bottom: 1.5rem;
   padding-bottom: 0.75rem;
   border-bottom: 3px solid var(--color-green);
 }
 
-.service-detail h2,
+.service-detail h2:not(.service-title),
 .service-detail h3 {
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--color-black);
   margin-bottom: 1rem;
   text-align: center;
-  width: 100%;
 }
 
 .service-detail p,
 .service-detail ul {
-  width: 100%;
   text-align: left;
 }
 
@@ -1030,10 +1024,22 @@ ul {
     grid-template-columns: 2fr 1fr 1fr;
   }
 
-  .service-detail {
+  .service-detail-columns {
     grid-template-columns: 1fr 1fr;
-    align-items: start;
     gap: 1.25rem;
+    align-items: start;
+  }
+
+  .service-detail:not(:has(.service-detail-columns)) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    align-items: start;
+  }
+
+  .service-detail:not(:has(.service-detail-columns)) > div {
+    display: flex;
+    flex-direction: column;
   }
 }
 
