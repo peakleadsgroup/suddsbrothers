@@ -530,7 +530,21 @@ ul {
   align-items: center;
 }
 
-.service-detail h2 {
+.service-detail .service-title {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+  font-weight: 800;
+  font-style: italic;
+  color: var(--color-black);
+  margin-bottom: 0.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 3px solid var(--color-green);
+}
+
+.service-detail h2,
+.service-detail h3 {
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--color-black);
