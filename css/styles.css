@@ -436,6 +436,10 @@ ul {
   color: var(--color-black);
 }
 
+.services-preview .preview-card h3 {
+  font-size: 1.75rem;
+}
+
 .preview-card p {
   color: var(--color-gray-600);
   margin-bottom: 1.25rem;
@@ -506,7 +510,9 @@ ul {
 .service-detail {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
+  gap: 1.5rem;
+  max-width: 960px;
+  margin-inline: auto;
   margin-bottom: 3rem;
   padding-bottom: 3rem;
   border-bottom: 1px solid var(--color-gray-200);
@@ -518,11 +524,40 @@ ul {
   padding-bottom: 0;
 }
 
+.service-detail > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .service-detail h2 {
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--color-black);
   margin-bottom: 1rem;
+  text-align: center;
+  width: 100%;
+}
+
+.service-detail p,
+.service-detail ul {
+  width: 100%;
+  text-align: left;
+}
+
+.service-detail ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--color-gray-600);
+}
+
+.service-detail li {
+  margin-bottom: 0.4rem;
+}
+
+.service-detail .btn {
+  align-self: flex-start;
 }
 
 .service-detail p {
@@ -535,8 +570,8 @@ ul {
   background: var(--color-green);
   color: var(--color-black);
   font-weight: 700;
-  font-size: 0.8rem;
-  padding: 0.3rem 0.75rem;
+  font-size: 1.25rem;
+  padding: 0.45rem 1rem;
   border-radius: 20px;
   margin-bottom: 1rem;
   text-transform: uppercase;
@@ -984,6 +1019,7 @@ ul {
   .service-detail {
     grid-template-columns: 1fr 1fr;
     align-items: start;
+    gap: 1.25rem;
   }
 }
 

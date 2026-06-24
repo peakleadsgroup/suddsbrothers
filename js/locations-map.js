@@ -24,6 +24,13 @@
     { name: 'Calabash, NC', coords: [33.8907, -78.5683] },
     { name: 'Ocean Isle Beach, NC', coords: [33.8943, -78.4267] },
     { name: 'Bolivia, NC', coords: [34.0677, -78.1483] },
+    { name: 'Burgaw, NC', coords: [34.5521, -77.9261] },
+    { name: 'Surf City, NC', coords: [34.4271, -77.5464] },
+    { name: 'Swansboro, NC', coords: [34.6877, -77.1191] },
+    { name: 'New Bern, NC', coords: [35.1085, -77.0441] },
+    { name: 'Morehead City, NC', coords: [34.7229, -76.7260] },
+    { name: 'Loris, SC', coords: [34.0563, -78.8903] },
+    { name: 'Conway, SC', coords: [33.8360, -79.0478] },
     { name: 'Whiteville, NC', coords: [34.3388, -78.7031] },
     { name: 'Little River, SC', coords: [33.8732, -78.6142] },
     { name: 'North Myrtle Beach, SC', coords: [33.8160, -78.6800] }
