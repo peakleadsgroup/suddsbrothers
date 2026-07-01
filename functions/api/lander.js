@@ -52,6 +52,14 @@ export async function onRequestPost(context) {
     const zipVal = String(zip).trim();
     const formattedAddress = `${streetVal}, ${cityVal}, ${stateVal} ${zipVal}`;
 
+    const zipNumber = parseInt(zipVal, 10);
+    if (!Number.isFinite(zipNumber)) {
+      return new Response(
+        JSON.stringify({ error: 'Please enter a valid zip code.' }),
+        { status: 400, headers: corsHeaders }
+      );
+    }
+
     const generatedAt = new Date().toLocaleString('en-US', {
       weekday: 'long',
       year: 'numeric',
@@ -97,7 +105,7 @@ export async function onRequestPost(context) {
           Street: streetVal,
           City: cityVal,
           State: stateVal,
-          Zip: zipVal,
+          Zip: zipNumber,
           Address: formattedAddress,
           'Full Summary': fullSummary,
           'Submitted At': new Date().toISOString()

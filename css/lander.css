@@ -207,6 +207,24 @@ body.lander-page::before {
   display: block;
 }
 
+.lander-autocomplete-host {
+  width: 100%;
+}
+
+.lander-autocomplete-host gmp-place-autocomplete {
+  width: 100%;
+  color-scheme: light;
+}
+
+.lander-input.lander-street-visible {
+  display: block;
+  margin-top: 14px;
+}
+
+.lander-autocomplete-host.lander-hidden {
+  display: none !important;
+}
+
 .lander-hidden {
   display: none !important;
 }
