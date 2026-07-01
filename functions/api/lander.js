@@ -100,16 +100,13 @@ export async function onRequestPost(context) {
 
     const airtableUrl = `https://api.airtable.com/v0/${baseId}/${encodeURIComponent(tableName)}`;
 
-    // Match landing-pages table fields; omit Address/Submitted At (not in bathrooms create payload).
     const fields = {
       'First Name': firstNameVal,
       'Last Name': lastNameVal,
       'Full Name': fullName,
       Phone: String(phone).trim(),
       Email: String(email).trim(),
-      Model: 'Lead',
       Street: streetVal,
-      Address: `${streetVal}, ${cityVal}, ${stateVal} ${zipVal}`,
       City: cityVal,
       State: stateVal,
       Zip: zipNumber,
