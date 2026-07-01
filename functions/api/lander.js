@@ -46,12 +46,37 @@ export async function onRequestPost(context) {
     }
 
     const fullName = `${String(firstName).trim()} ${String(lastName).trim()}`.trim();
-    const fullAddress = `${street}, ${city}, ${state} ${zip}`;
+    const streetVal = String(street).trim();
+    const cityVal = String(city).trim();
+    const stateVal = String(state).trim();
+    const zipVal = String(zip).trim();
+    const formattedAddress = `${streetVal}, ${cityVal}, ${stateVal} ${zipVal}`;
 
-    const message = [
+    const generatedAt = new Date().toLocaleString('en-US', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true,
+      timeZone: 'America/New_York'
+    });
+
+    const fullSummary = [
+      'Pressure Washing Quote Lead Information:',
+      '',
+      `Name: ${fullName}`,
+      `Phone: ${phone}`,
+      `Email: ${email}`,
+      'Authorized Decision Maker: Yes',
+      '',
+      'Address:',
+      streetVal,
+      `${cityVal}, ${stateVal} ${zipVal}`,
+      '',
       'Source: Lander Quiz',
-      `Authorized Decision Maker: Yes`,
-      `Address: ${fullAddress}`
+      `Lead generated on: ${generatedAt} EST`
     ].join('\n');
 
     const airtableUrl = `https://api.airtable.com/v0/${baseId}/${encodeURIComponent(tableName)}`;
@@ -69,7 +94,12 @@ export async function onRequestPost(context) {
           'Full Name': fullName,
           Phone: phone,
           Email: email,
-          Message: message,
+          Street: streetVal,
+          City: cityVal,
+          State: stateVal,
+          Zip: zipVal,
+          Address: formattedAddress,
+          'Full Summary': fullSummary,
           'Submitted At': new Date().toISOString()
         }
       })
