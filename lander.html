@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Free Pressure Washing Quote | Sudds Brothers</title>
+  <meta name="description" content="Take our 30 second quiz for a fast and free pressure washing quote from Sudds Brothers. Serving coastal North Carolina.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;0,9..40,800;1,9..40,800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="stylesheet" href="css/lander.css">
+  <script src="js/meta-pixel.js"></script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1834235623803748&ev=PageView&noscript=1" alt=""></noscript>
+</head>
+<body class="lander-page">
+  <main class="lander-container">
+    <div class="lander-logo">
+      <img src="images/logo.png" alt="Sudds Brothers Pressure Washing">
+    </div>
+
+    <h1 class="lander-heading" id="landerHeading">
+      Take our 30 second quiz for a <span class="highlight">fast and free quote</span>
+    </h1>
+
+    <div class="lander-progress" id="progressBar">
+      <div class="lander-progress-fill" id="progressFill" style="width: 33%"></div>
+    </div>
+
+    <!-- Step 1: Authorized decision maker -->
+    <div class="lander-step active" id="step1">
+      <div class="lander-question">Are you the homeowner or authorized decision maker?</div>
+      <div class="lander-options">
+        <button type="button" class="lander-option" onclick="selectDecisionMaker(this, 'yes')">Yes</button>
+        <button type="button" class="lander-option" onclick="selectDecisionMaker(this, 'no')">No</button>
+      </div>
+      <p class="lander-notice" id="unauthorizedNotice">We can only work on the property if you're authorized to make decisions</p>
+    </div>
+
+    <!-- Step 2: Address -->
+    <div class="lander-step" id="step2">
+      <div class="lander-question">What is your address?</div>
+      <div class="lander-subheading">Start typing your address and select it from the list, then confirm the details below.</div>
+      <div class="lander-address-grid">
+        <div class="lander-field">
+          <label for="street">Street Address</label>
+          <input type="text" class="lander-input" id="street" placeholder="Street Address" autocomplete="street-address" oninput="validateAddressForm()">
+          <div class="lander-field-error" id="streetError">Street address must start with a number</div>
+        </div>
+
+        <div class="lander-field lander-hidden" id="cityField">
+          <label for="city">City</label>
+          <input type="text" class="lander-input" id="city" placeholder="City" autocomplete="address-level2" oninput="validateAddressForm()">
+        </div>
+
+        <div class="lander-address-row lander-hidden" id="stateZipRow">
+          <div class="lander-field">
+            <label for="state">State</label>
+            <input type="text" class="lander-input" id="state" placeholder="State" autocomplete="address-level1" oninput="validateAddressForm()">
+          </div>
+          <div class="lander-field">
+            <label for="zip">Zip Code</label>
+            <input type="text" class="lander-input" id="zip" placeholder="Zip Code" autocomplete="postal-code" maxlength="5" inputmode="numeric" oninput="validateAddressForm()">
+          </div>
+        </div>
+      </div>
+      <div class="lander-nav">
+        <button type="button" class="lander-btn" id="addressNextBtn" onclick="goToContactStep()" disabled>Next</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Contact info -->
+    <div class="lander-step" id="step3">
+      <div class="lander-question">Where can we reach you with your estimate?</div>
+      <div class="lander-address-grid">
+        <div class="lander-field">
+          <label for="contactName">Name</label>
+          <input type="text" class="lander-input" id="contactName" placeholder="Your full name" autocomplete="name">
+        </div>
+        <div class="lander-field">
+          <label for="contactEmail">Email</label>
+          <input type="email" class="lander-input" id="contactEmail" placeholder="you@email.com" autocomplete="email">
+        </div>
+        <div class="lander-field">
+          <label for="contactPhone">Phone</label>
+          <input type="tel" class="lander-input" id="contactPhone" placeholder="(919) 555-1234" autocomplete="tel">
+        </div>
+      </div>
+      <div class="lander-nav">
+        <button type="button" class="lander-btn" id="contactSubmitBtn" onclick="submitLanderForm()" disabled>Get My Free Quote</button>
+      </div>
+      <div class="lander-status" id="submitStatus" role="alert"></div>
+      <p class="lander-privacy">By submitting, you agree to be contacted about your estimate. Message and data rates may apply.</p>
+    </div>
+
+    <!-- Success -->
+    <div class="lander-step lander-success" id="success">
+      <div class="lander-success-icon" aria-hidden="true">&#10003;</div>
+      <h2>You're all set!</h2>
+      <p>Thanks for requesting a quote. We'll be in touch within one business day.</p>
+      <p>Need help sooner? Call <a href="tel:+19194410934">(919) 441-0934</a></p>
+    </div>
+  </main>
+
+  <script src="js/lander.js"></script>
+</body>
+</html>

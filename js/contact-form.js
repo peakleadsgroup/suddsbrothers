@@ -101,6 +101,9 @@
         });
       })
       .then(function () {
+        if (typeof fbq === 'function') {
+          fbq('track', 'Lead', { content_name: 'Contact Form' });
+        }
         showStatus('Thank you! Your request has been submitted. We\'ll be in touch within one business day.', 'success');
         form.reset();
       })
