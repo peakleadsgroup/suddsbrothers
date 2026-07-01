@@ -134,19 +134,35 @@
   window.goToContactStep = goToContactStep;
 
   function validateContactForm() {
-    var nameInput = document.getElementById('contactName');
+    var firstNameInput = document.getElementById('contactFirstName');
+    var lastNameInput = document.getElementById('contactLastName');
     var emailInput = document.getElementById('contactEmail');
+    var emailField = document.getElementById('contactEmailField');
     var phoneInput = document.getElementById('contactPhone');
     var submitBtn = document.getElementById('contactSubmitBtn');
 
-    var name = nameInput ? nameInput.value.trim() : '';
+    var firstName = firstNameInput ? firstNameInput.value.trim() : '';
+    var lastName = lastNameInput ? lastNameInput.value.trim() : '';
     var email = emailInput ? emailInput.value.trim() : '';
     var phone = phoneInput ? phoneInput.value.trim() : '';
     var digits = phone.replace(/\D/g, '');
 
-    var valid = name.length > 0 &&
-      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) &&
-      digits.length >= 10;
+    if (emailField) {
+      if (phone.length > 0) {
+        emailField.classList.remove('lander-hidden');
+      } else {
+        emailField.classList.add('lander-hidden');
+        if (emailInput) emailInput.value = '';
+        email = '';
+      }
+    }
+
+    var emailValid = phone.length === 0 || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    var valid = firstName.length > 0 &&
+      lastName.length > 0 &&
+      digits.length >= 10 &&
+      emailValid &&
+      (phone.length === 0 || email.length > 0);
 
     if (submitBtn && !isSubmitting) submitBtn.disabled = !valid;
     return valid;
@@ -204,28 +220,6 @@
     });
   }
 
-  function loadGoogleMaps() {
-    fetch('/api/maps-config')
-      .then(function (res) {
-        return res.json().then(function (data) {
-          if (!res.ok) throw new Error(data.error || 'Maps unavailable');
-          return data.key;
-        });
-      })
-      .then(function (key) {
-        window.__attachPlaces = attachPlacesAutocomplete;
-        var script = document.createElement('script');
-        script.async = true;
-        script.defer = true;
-        script.src = 'https://maps.googleapis.com/maps/api/js?key=' +
-          encodeURIComponent(key) + '&loading=async&libraries=places&callback=__attachPlaces';
-        document.body.appendChild(script);
-      })
-      .catch(function (err) {
-        console.warn('Google Places not loaded:', err.message);
-      });
-  }
-
   function showSubmitError(message) {
     if (!submitStatus) return;
     submitStatus.textContent = message;
@@ -253,7 +247,8 @@
     }
 
     var payload = {
-      name: document.getElementById('contactName').value.trim(),
+      firstName: document.getElementById('contactFirstName').value.trim(),
+      lastName: document.getElementById('contactLastName').value.trim(),
       email: document.getElementById('contactEmail').value.trim(),
       phone: document.getElementById('contactPhone').value.trim(),
       street: formData.address.street,
@@ -296,12 +291,12 @@
   }
 
   window.submitLanderForm = submitLanderForm;
+  window.__attachPlaces = attachPlacesAutocomplete;
 
-  ['contactName', 'contactEmail', 'contactPhone'].forEach(function (id) {
+  ['contactFirstName', 'contactLastName', 'contactEmail', 'contactPhone'].forEach(function (id) {
     var el = document.getElementById(id);
     if (el) el.addEventListener('input', validateContactForm);
   });
 
   updateProgress();
-  loadGoogleMaps();
 })();

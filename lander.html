@@ -42,7 +42,6 @@
     <!-- Step 2: Address -->
     <div class="lander-step" id="step2">
       <div class="lander-question">What is your address?</div>
-      <div class="lander-subheading">Start typing your address and select it from the list, then confirm the details below.</div>
       <div class="lander-address-grid">
         <div class="lander-field">
           <label for="street">Street Address</label>
@@ -75,17 +74,23 @@
     <div class="lander-step" id="step3">
       <div class="lander-question">Where can we reach you with your estimate?</div>
       <div class="lander-address-grid">
-        <div class="lander-field">
-          <label for="contactName">Name</label>
-          <input type="text" class="lander-input" id="contactName" placeholder="Your full name" autocomplete="name">
-        </div>
-        <div class="lander-field">
-          <label for="contactEmail">Email</label>
-          <input type="email" class="lander-input" id="contactEmail" placeholder="you@email.com" autocomplete="email">
+        <div class="lander-name-row">
+          <div class="lander-field">
+            <label for="contactFirstName">First Name</label>
+            <input type="text" class="lander-input" id="contactFirstName" placeholder="First name" autocomplete="given-name">
+          </div>
+          <div class="lander-field">
+            <label for="contactLastName">Last Name</label>
+            <input type="text" class="lander-input" id="contactLastName" placeholder="Last name" autocomplete="family-name">
+          </div>
         </div>
         <div class="lander-field">
           <label for="contactPhone">Phone</label>
           <input type="tel" class="lander-input" id="contactPhone" placeholder="(919) 555-1234" autocomplete="tel">
+        </div>
+        <div class="lander-field lander-hidden" id="contactEmailField">
+          <label for="contactEmail">Email</label>
+          <input type="email" class="lander-input" id="contactEmail" placeholder="you@email.com" autocomplete="email">
         </div>
       </div>
       <div class="lander-nav">
@@ -105,5 +110,6 @@
   </main>
 
   <script src="js/lander.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANMfDpc1o2RoVn2qtQM091Rs840U0O7QE&loading=async&libraries=places&callback=__attachPlaces"></script>
 </body>
 </html>

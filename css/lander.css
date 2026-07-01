@@ -161,6 +161,12 @@ body.lander-page::before {
   gap: 14px;
 }
 
+.lander-name-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
 .lander-field label {
   display: block;
   font-weight: 700;
@@ -292,6 +298,10 @@ body.lander-page::before {
   }
 
   .lander-address-row {
+    grid-template-columns: 1fr;
+  }
+
+  .lander-name-row {
     grid-template-columns: 1fr;
   }
 

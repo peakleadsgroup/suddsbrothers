@@ -9,7 +9,8 @@ export async function onRequestPost(context) {
   try {
     const body = await request.json();
     const {
-      name,
+      firstName,
+      lastName,
       email,
       phone,
       street,
@@ -19,7 +20,7 @@ export async function onRequestPost(context) {
       authorizedDecisionMaker
     } = body;
 
-    if (!name || !email || !phone || !street || !city || !state || !zip) {
+    if (!firstName || !lastName || !email || !phone || !street || !city || !state || !zip) {
       return new Response(
         JSON.stringify({ error: 'Please complete all required fields.' }),
         { status: 400, headers: corsHeaders }
@@ -44,9 +45,7 @@ export async function onRequestPost(context) {
       );
     }
 
-    const nameParts = String(name).trim().split(/\s+/);
-    const firstName = nameParts[0] || '';
-    const lastName = nameParts.slice(1).join(' ') || '';
+    const fullName = `${String(firstName).trim()} ${String(lastName).trim()}`.trim();
     const fullAddress = `${street}, ${city}, ${state} ${zip}`;
 
     const message = [
@@ -65,8 +64,9 @@ export async function onRequestPost(context) {
       },
       body: JSON.stringify({
         fields: {
-          'First Name': firstName,
-          'Last Name': lastName,
+          'First Name': String(firstName).trim(),
+          'Last Name': String(lastName).trim(),
+          'Full Name': fullName,
           Phone: phone,
           Email: email,
           Message: message,
