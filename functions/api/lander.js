@@ -1,3 +1,13 @@
+function parseAirtableError(errText) {
+  try {
+    const data = JSON.parse(errText);
+    if (data.error && data.error.message) return data.error.message;
+  } catch (_) {
+    /* ignore */
+  }
+  return null;
+}
+
 export async function onRequestPost(context) {
   const { request, env } = context;
 
@@ -45,14 +55,15 @@ export async function onRequestPost(context) {
       );
     }
 
-    const fullName = `${String(firstName).trim()} ${String(lastName).trim()}`.trim();
+    const firstNameVal = String(firstName).trim();
+    const lastNameVal = String(lastName).trim();
+    const fullName = `${firstNameVal} ${lastNameVal}`.trim();
     const streetVal = String(street).trim();
     const cityVal = String(city).trim();
     const stateVal = String(state).trim();
     const zipVal = String(zip).trim();
-    const formattedAddress = `${streetVal}, ${cityVal}, ${stateVal} ${zipVal}`;
-
     const zipNumber = parseInt(zipVal, 10);
+
     if (!Number.isFinite(zipNumber)) {
       return new Response(
         JSON.stringify({ error: 'Please enter a valid zip code.' }),
@@ -89,35 +100,40 @@ export async function onRequestPost(context) {
 
     const airtableUrl = `https://api.airtable.com/v0/${baseId}/${encodeURIComponent(tableName)}`;
 
+    // Match landing-pages table fields; omit Address/Submitted At (not in bathrooms create payload).
+    const fields = {
+      'First Name': firstNameVal,
+      'Last Name': lastNameVal,
+      'Full Name': fullName,
+      Phone: String(phone).trim(),
+      Email: String(email).trim(),
+      Model: 'Lead',
+      Street: streetVal,
+      Address: `${streetVal}, ${cityVal}, ${stateVal} ${zipVal}`,
+      City: cityVal,
+      State: stateVal,
+      Zip: zipNumber,
+      'Full Summary': fullSummary
+    };
+
     const airtableResponse = await fetch(airtableUrl, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        fields: {
-          'First Name': String(firstName).trim(),
-          'Last Name': String(lastName).trim(),
-          'Full Name': fullName,
-          Phone: phone,
-          Email: email,
-          Street: streetVal,
-          City: cityVal,
-          State: stateVal,
-          Zip: zipNumber,
-          Address: formattedAddress,
-          'Full Summary': fullSummary,
-          'Submitted At': new Date().toISOString()
-        }
-      })
+      body: JSON.stringify({ fields })
     });
 
     if (!airtableResponse.ok) {
       const errText = await airtableResponse.text();
       console.error('Airtable lander error:', errText);
+
+      const airtableMessage = parseAirtableError(errText);
       return new Response(
-        JSON.stringify({ error: 'Failed to submit. Please try again or call (919) 441-0934.' }),
+        JSON.stringify({
+          error: airtableMessage || 'Failed to submit. Please try again or call (919) 441-0934.'
+        }),
         { status: 500, headers: corsHeaders }
       );
     }
