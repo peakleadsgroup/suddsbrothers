@@ -171,86 +171,53 @@
   window.validateContactForm = validateContactForm;
 
   function attachPlacesAutocomplete() {
-    var host = document.getElementById('streetAutocompleteHost');
-    if (!host || host.dataset.initialized === 'true') return;
+    if (!window.google || !google.maps || !google.maps.places) return;
 
-    google.maps.importLibrary('places').then(function (placesLib) {
-      var PlaceAutocompleteElement = placesLib.PlaceAutocompleteElement;
-      var autocompleteEl = new PlaceAutocompleteElement({
-        includedRegionCodes: ['us']
-      });
+    var addressInput = document.getElementById('street');
+    if (!addressInput) return;
 
-      autocompleteEl.id = 'placeAutocomplete';
-      autocompleteEl.placeholder = 'Street Address';
-      host.appendChild(autocompleteEl);
-      host.dataset.initialized = 'true';
+    var autocomplete = new google.maps.places.Autocomplete(addressInput, {
+      types: ['address'],
+      componentRestrictions: { country: ['us'] },
+      fields: ['address_components', 'formatted_address', 'geometry']
+    });
 
-      autocompleteEl.addEventListener('gmp-select', function (event) {
-        var placePrediction = event.placePrediction;
-        if (!placePrediction) return;
+    autocomplete.addListener('place_changed', function () {
+      var place = autocomplete.getPlace();
+      if (!place || !place.address_components) return;
 
-        var place = placePrediction.toPlace();
-        place.fetchFields({ fields: ['addressComponents'] }).then(function () {
-          fillAddressFromPlace(place);
+      var comps = {};
+      place.address_components.forEach(function (c) {
+        c.types.forEach(function (t) {
+          comps[t] = c;
         });
       });
-    }).catch(function (err) {
-      console.warn('Google Places not loaded:', err.message);
+
+      var streetAddress = '';
+      if (comps.street_number) streetAddress += comps.street_number.long_name + ' ';
+      if (comps.route) streetAddress += comps.route.long_name;
+      if (streetAddress.trim()) addressInput.value = streetAddress.trim();
+
+      var cityField = document.getElementById('cityField');
+      var stateZipRow = document.getElementById('stateZipRow');
+      if (streetAddress.trim()) {
+        if (cityField) cityField.classList.remove('lander-hidden');
+        if (stateZipRow) stateZipRow.classList.remove('lander-hidden');
+      }
+
+      var cityInput = document.getElementById('city');
+      var stateInput = document.getElementById('state');
+      var zipInput = document.getElementById('zip');
+
+      if (comps.locality && cityInput) cityInput.value = comps.locality.long_name;
+      else if (comps.sublocality && cityInput) cityInput.value = comps.sublocality.long_name;
+      if (comps.administrative_area_level_1 && stateInput) {
+        stateInput.value = comps.administrative_area_level_1.short_name;
+      }
+      if (comps.postal_code && zipInput) zipInput.value = comps.postal_code.long_name;
+
+      validateAddressForm();
     });
-  }
-
-  function fillAddressFromPlace(place) {
-    var streetInput = document.getElementById('street');
-    var cityInput = document.getElementById('city');
-    var stateInput = document.getElementById('state');
-    var zipInput = document.getElementById('zip');
-    var cityField = document.getElementById('cityField');
-    var stateZipRow = document.getElementById('stateZipRow');
-    var autocompleteHost = document.getElementById('streetAutocompleteHost');
-
-    if (!place || !place.addressComponents || !streetInput) return;
-
-    var address1 = '';
-    var postcode = '';
-    var city = '';
-    var state = '';
-
-    place.addressComponents.forEach(function (component) {
-      if (component.types.indexOf('street_number') !== -1) {
-        address1 = component.longText + ' ' + address1;
-      }
-      if (component.types.indexOf('route') !== -1) {
-        address1 += component.shortText;
-      }
-      if (component.types.indexOf('postal_code') !== -1) {
-        postcode = component.longText;
-      }
-      if (component.types.indexOf('locality') !== -1) {
-        city = component.longText;
-      } else if (!city && component.types.indexOf('sublocality') !== -1) {
-        city = component.longText;
-      }
-      if (component.types.indexOf('administrative_area_level_1') !== -1) {
-        state = component.shortText;
-      }
-    });
-
-    streetInput.value = address1.trim();
-    streetInput.classList.remove('lander-hidden');
-    streetInput.classList.add('lander-street-visible');
-    if (autocompleteHost) autocompleteHost.classList.add('lander-hidden');
-    if (cityField) cityField.classList.remove('lander-hidden');
-    if (stateZipRow) stateZipRow.classList.remove('lander-hidden');
-    if (cityInput) cityInput.value = city;
-    if (stateInput) stateInput.value = state;
-    if (zipInput) zipInput.value = postcode;
-
-    validateAddressForm();
-  }
-
-  function initPlacesAutocomplete() {
-    if (!window.google || !google.maps || !google.maps.importLibrary) return;
-    attachPlacesAutocomplete();
   }
 
   function showSubmitError(message) {
@@ -324,6 +291,7 @@
   }
 
   window.submitLanderForm = submitLanderForm;
+  window.__attachPlaces = attachPlacesAutocomplete;
 
   ['contactFirstName', 'contactLastName', 'contactEmail', 'contactPhone'].forEach(function (id) {
     var el = document.getElementById(id);
@@ -331,5 +299,4 @@
   });
 
   updateProgress();
-  initPlacesAutocomplete();
 })();
